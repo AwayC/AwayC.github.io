@@ -22,13 +22,13 @@
 
 
 
-### 2. `document.querySelector `和` document.querySelecorAll`
+### 2. `document.querySelector`和`document.querySelecorAll`
 
 这两个让你用js选择与css匹配的元素。
 
 
 
-### 4. 闭包工作
+### 3. 闭包工作
 
 这里会a是一个创建函数的函数。
 
@@ -46,7 +46,7 @@ console.log(f());  // prints 123
 console.log(g());  // prints 456
 ```
 
-### 5.this的使用
+### 4.this的使用
 
 注意this被设为的对象，函数被`.`调用是this是调用的对象，否则是`null`
 
@@ -57,7 +57,7 @@ console.log(g());  // prints 456
 
 
 
-### 6.ES5/ES6/ES7 特性
+### 5.ES5/ES6/ES7 特性
 
 `var`被弃用，使用`const`和`let`
 
