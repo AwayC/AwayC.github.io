@@ -6,5 +6,7 @@
     "嵌入式": "#c3e6cb",
     "心得": "#f5e6cc", 
     "Linux": "#e0e0e0", 
+    "单片机": "#ffb5e6",
+    "Raspberry Pi": "#ff8080",
     "default": "#e0e0e0"
 }
