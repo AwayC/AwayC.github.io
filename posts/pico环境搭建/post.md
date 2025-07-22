@@ -56,7 +56,7 @@ PICO_SDK_PAHT = pico-sdk的路径
 "compilerPath": "E:\\mcu_test\\picoSDK\\gcc-arm-none-eabi\\bin\\arm-none-eabi-gcc.EXE", //分割符变成 '\\'
 ```
 
-最后点击最下面的 ![build](\posts\pico环境搭建\picture\build.png)，齿轮图标（`生成`或`build`)，最上边会选择编译器，选择`gcc-arm-none-eabi`就会重新生成build文件，构建和编译。
+最后点击最下面的 <img src="\posts\pico环境搭建\picture\build.png" alt="build"/> ，齿轮图标（`生成`或`build`)，最上边会选择编译器，选择`gcc-arm-none-eabi`就会重新生成build文件，构建和编译。
 
 
 ### 5.烧录程序
