@@ -3,7 +3,7 @@
     "id": 6, 
     "name": "c++设计摘记", 
     "has_img": true, 
-    "img": "@/posts/c++design/picture/design.png",
+    "img": "@/posts/c++design/picture/design.jpeg",
     "summary": "记录一些个人在c++设计中的模式和技巧",
     "tags": [
       { "name": "C/C++" },
@@ -16,7 +16,7 @@
     "id": 5,
     "name": "树莓派pico的windows环境搭建",
     "has_img": true,
-    "img": "@/posts/pico环境搭建/picture/pico.jpg",
+    "img": "@/posts/pico环境搭建/picture/pico.jpeg",
     "summary": "记录头疼的windows搭建过程，给以后做参考",
     "tags": [
       { "name": "Raspberry Pi" },

@@ -11,11 +11,11 @@
 ```c++
 class Obj : public std::enable_shared_from_this<Obj> { 
   
-  Obj(); 
-  //这里用工厂模式
-  static std::shard_ptr<Obj> create() { 
-  	return std::make_shared<Obj>(); 
-  }
+	Obj(); 
+	//这里用工厂模式
+	static std::shard_ptr<Obj> create() { 
+		return std::make_shared<Obj>(); 
+	}
 }
 ```
 
@@ -29,10 +29,10 @@ class Obj : public std::enable_shared_from_this<Obj> {
 Obj::handle() { 
 	auto self = shared_from_this(); //获取指针
   
-  onEvent( [self](result* res) { 
-  	self->action(); 
-    self->handleEvent(); 
-  }); //这样还传递了指针给异步对象，保证了指针在回调之前还是有效的。
+	onEvent( [self](result* res) { 
+		self->action(); 
+		self->handleEvent(); 
+	}); //这样就可以在lambda中使用self了，还传递了指针给异步对象，保证了指针在回调之前还是有效的。
 }
 ```
 
@@ -47,8 +47,8 @@ Obj::handle() {
 ```json
 { 
 	"name": "away", 
-  "port": 8080, 
-  "arr": [1, 2, 3]
+	"port": 8080, 
+	"arr": [1, 2, 3]
 }
 ```
 
@@ -56,9 +56,9 @@ Obj::handle() {
 
 ```c++
 json = { 
-  {"name", "away"}, 
-  {"port", 8080}, 
-  {"arr", {1, 2, 3}}, 
+	{"name", "away"}, 
+	{"port", 8080}, 
+	{"arr", {1, 2, 3}}, 
 }
 ```
 
@@ -91,7 +91,7 @@ lept_value::lept_value(std::initializer_list<lept_value> initList)
 //当然nlohmann中有更加好的设计和细节，这里是我的实现
 ```
 
-## 4.鸭子类型（duck type)
+## 4.鸭子类型（duck type）
 
 想象一个场景，有两个类，一个上下文或者会话类，他拥有或者依赖另一个类，但是创建依赖对象时，要有一些上下文信息，我们是传入个个细节信息还是传入上下文？
 
@@ -105,14 +105,14 @@ lept_value::lept_value(std::initializer_list<lept_value> initList)
 //Obj.hpp
 class Obj { 
 	template<typename T>
-  Obj(std::shared_ptr<T> ctx); 
+  	Obj(std::shared_ptr<T> ctx); 
 }; 
 
 //Obj.cpp
 template<typename T>
 Obj::Obj(std::shared_ptr<T> ctx) { 
 	ctx->get(); 
-  //....
+  	//....
 }
 
 template Obj::Obj(std::shared_ptr<A> ctx); //指定具体的类
