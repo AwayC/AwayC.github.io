@@ -16,7 +16,7 @@
     "id": 5,
     "name": "树莓派pico的windows环境搭建",
     "has_img": true,
-    "img": "@/posts/pico环境搭建/picture/pico.jpeg",
+    "img": "@/posts/pico环境搭建/picture/pico.jpg",
     "summary": "记录头疼的windows搭建过程，给以后做参考",
     "tags": [
       { "name": "Raspberry Pi" },
