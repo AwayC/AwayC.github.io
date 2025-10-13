@@ -1,6 +1,6 @@
 # SQLite 基础
 
-## 下载
+## 1.下载
 
 就是一库调用，和命令行工具，下载zip，解压即可。
 
@@ -18,7 +18,7 @@ source ~/.zshrc
 
 
 
-## 基础命令
+## 2.基础命令
 
 打开SQLite CLI
 
@@ -46,7 +46,7 @@ source ~/.zshrc
 
 4. **创建表**
 
-   ```sqlite
+   ```sql
    CREATE TABLE users (
    	id INTEGER PRIMARY KEY, 
      name TEXT NOT NULL, 
@@ -73,10 +73,147 @@ source ~/.zshrc
 
 5. **插入数据**
 
-    ```sqlite
+    ```sql
     INSERT INTO users (name, email, age) VALUES ('Alice', 'alice@hdu.com', 30); 
     INSERT INTO users (name, email, age) VALUES ('Bob', 'bob@hdu.com', 25); 
     INSERT INTO users (name, email, age) VALUES ('Charlie', 'charlie@hdu.com', 35); 
     ```
 
-      
+6. **查询数据**
+
+    ```sql
+    // 查询所有信息
+    SELECT * FROM users; 
+    //查询特定列
+    SELECT name, age FROM users; 
+    //按条件查询（WHERE）
+    SELECT * FROM users WHERE age > 30; 
+    SELECT * FROM users WHERE name = 'Bob'; 
+    
+    ```
+
+7. **美化输出**
+
+    ```sql
+    .headers on 
+    .mode column
+    SELECT * FROM users; 
+    ```
+
+8. **修改数据**
+
+    ```sql
+    UPDATE users SET age = 26 WHERE name = 'Bob'; 
+    ```
+
+    Warning: `UPDATE`一定要加`WHERE`否则会修改整个表
+
+9. **删除数据**
+
+    ```sql
+    DELETE FROM users WHERE id = 3; 
+    ```
+
+10. 创建索引
+
+    为email创建列表索引，加快查询
+
+    ```sql
+    CREATE INDEX index_email ON users(email); 
+    ```
+
+## 3.关联查询（JOIN）
+
+关系型数据库精髓
+
+假设有一个posts（文章）表
+
+```sql
+CREATE TABLE posts ( 
+	post_id INTEGER PRIMARY KEY, 
+  user_id INTEGER, 
+  title TEXT, 
+  content TEXT, 
+  FOREIGN KEY (user_id) REFERENCES user(id)
+); 
+
+INSERT INTO posts (user_id, title, content) VALUES (1, 'Alice\' post', '...'); 
+INSERT INTO posts (user_id, title, content) VALUES (2, 'Bob\' post', '...'); 
+INSERT INTO posts (user_id, title, content) VALUES (1, 'Alice', '...'); 
+```
+
+查询所有文章作者的名字， 只需要把 posts表 和 users表连接起来
+
+```sql
+SELECT
+	users.name, 
+	posts.title
+FROM 
+	posts
+JOIN
+	users ON posts.user_id = users.id
+```
+
+
+
+## 4. C/C++ 接口
+
+mac 安装
+
+```bash
+brew install sqlite3
+```
+
+源码整合
+
+下载 `sqlite-amalgamation-3500400.zip`
+
+[官方api文档](https://sqlite.org/cintro.html)
+
+**样例**
+
+```cpp
+#include <cstdio>
+#include <sqlite3.h>
+
+static int callback(void *NotUsed, int argc, char **argv, char **azColName)
+{
+    for (int i = 0;i < argc;i ++)
+    {
+        printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+    }
+    printf("\n");
+    return 0;
+}
+
+int main(int argc, char* argv[])
+{
+    sqlite3 *db;
+    char *zErrMsg = nullptr;
+    int rc;
+
+    if (argc != 3)
+    {
+        fprintf(stderr, "Usage: %s DATABASE SQL-STATEMENT\n", argv[0]);
+        return 1;
+    }
+    rc = sqlite3_open(argv[1], &db);
+    if (rc)
+    {
+        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        return 1;
+    }
+    rc = sqlite3_exec(db, argv[2], callback, nullptr, &zErrMsg);
+    if (rc != SQLITE_OK)
+    {
+        fprintf(stderr, "SQL error: %s\n", zErrMsg);
+        sqlite3_free(zErrMsg);
+    }
+    sqlite3_close(db);
+    return 0;
+}
+```
+
+
+

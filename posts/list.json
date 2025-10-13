@@ -1,5 +1,17 @@
 [
   {
+    "id": 7, 
+    "name": "sqlite基础", 
+    "has_img": true, 
+    "img": "@/posts/sqlite基础/picture/sqlite.jpeg", 
+    "summary": "sqlite的基本用法记录", 
+    "tags": [
+      { "name": "SQL数据库" }
+    ], 
+    "pagePath": "sqlite基础/SQLite基础",
+    "time": "Oct 13, 2025"
+  },
+  {
     "id": 6, 
     "name": "c++设计摘记", 
     "has_img": true, 
