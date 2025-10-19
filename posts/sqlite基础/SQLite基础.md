@@ -70,7 +70,6 @@ source ~/.zshrc
    
     - `.schema users`: 查看表结构
    
-
 5. **插入数据**
 
     ```sql
@@ -156,7 +155,7 @@ JOIN
 
 
 
-## 4. C/C++ 接口
+## 4. C 接口
 
 mac 安装
 
@@ -212,6 +211,69 @@ int main(int argc, char* argv[])
     }
     sqlite3_close(db);
     return 0;
+}
+```
+
+
+
+## 6. C++ 封装
+
+[SQLiteCPP](https://github.com/SRombauts/SQLiteCpp) 提供了c++的封装。
+
+**Example1**
+
+```c++
+#include <SQLiteCpp/SQLiteCpp.h>
+#include <SQLiteCpp/VariadicBind.h>
+
+try
+{
+    SQLite::Database db("expable.db3");
+  	// '?' 为占位符
+    SQLite::Statement query(db, "SELECT * FROM test WHERE size > ?");
+		
+  	//将第1个占位符绑定为6
+    query.bind(1, 6);
+		
+ 		//取出查询结果直到空
+    while (query.executeStep())
+    {
+        int id = query.getColumn(0);
+        const char* value = query.getColumn(1);
+        int size = query.getColumn(2);
+    }
+} catch (std::exception& e)
+{
+    std::cerr << "exception: " << e.what() << std::endl;
+}
+```
+
+
+
+**Example2**
+
+```c++
+try
+{
+    SQLite::Database    db("transaction.db3", SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
+
+  	//删除 test
+    db.exec("DROP TABLE IF EXISTS test");
+
+    // 把下列操作统一提交，保证原子性
+    SQLite::Transaction transaction(db);
+
+    db.exec("CREATE TABLE test (id INTEGER PRIMARY KEY, value TEXT)");
+
+    int nb = db.exec("INSERT INTO test VALUES (NULL, \"test\")");
+    std::cout << "INSERT INTO test VALUES (NULL, \"test\")\", returned " << nb << std::endl;
+		
+  	//提交
+    transaction.commit();
+}
+catch (std::exception& e)
+{
+    std::cout << "exception: " << e.what() << std::endl;
 }
 ```
 
