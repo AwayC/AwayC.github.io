@@ -1,5 +1,17 @@
 [
   {
+    "id": 8, 
+    "name": "lvgl-v9.4移植", 
+    "has_img": false, 
+    "summary": "lvgl-v9.4移植到Clion项目，无需LCD驱动, 无脑移植",
+    "tags": [
+      { "name": "C/C++" },
+      { "name": "嵌入式" }
+    ],
+    "pagePath": "lvgl-v9.4移植/post",
+    "time": "Oct 21, 2025"
+  },
+  {
     "id": 7, 
     "name": "sqlite基础", 
     "has_img": true, 
