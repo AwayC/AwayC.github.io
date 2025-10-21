@@ -223,5 +223,22 @@ static void tick_init() {
     
 ```
 
+## 最后添加心跳
+在`stm32fxxx_it.c`中添加心跳函数, 在f4中就是`stm32f4xx_it.c`
+
+```c
+void SysTick_Handler(void)
+{
+  /* USER CODE BEGIN SysTick_IRQn 0 */
+
+  /* USER CODE END SysTick_IRQn 0 */
+  HAL_IncTick();
+  /* USER CODE BEGIN SysTick_IRQn 1 */
+  // 调用lvgl的心跳函数
+  lv_tick_inc(1);
+  /* USER CODE END SysTick_IRQn 1 */
+}
+```
+
 
 
