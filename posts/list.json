@@ -1,5 +1,16 @@
 [
   {
+    "id": 8, 
+    "name": "C++模版技巧与反射",
+    "has_img": false, 
+    "summary": "c++模版技巧与反射", 
+    "tags": [
+      {"name": "C/C++"}
+    ], 
+    "pagePath": "C++reflect/post", 
+    "time": "Nov 5, 2025" 
+  },
+  {
     "id": 7, 
     "name": "sqlite基础", 
     "has_img": true, 
