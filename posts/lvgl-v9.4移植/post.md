@@ -8,6 +8,10 @@
 - 平台：stm32
 - 显示设备：tft-LCD ST7789
 
+> [!WARNING]
+>
+> 注意屏幕型号是否匹配，否则驱动不同
+
 ## Stm32CubeMx引脚配置
 
 1. 开启SPI： 开启DMA， `Peripheral`和`Memory`设置为`Half Word`(否则GRAM会出错)
@@ -15,6 +19,8 @@
     <img src="posts\lvgl-v9.4移植\img\DMA.png">
 
 2. 配置LCD引脚： LCD_RESET（重置, 可选）, LCD_BL（背光灯）,LCD_DCX, LCD_CS 
+
+    
 
 ## 下载lvgl-v9.4
 
