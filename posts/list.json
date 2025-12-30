@@ -115,7 +115,7 @@
     "id": 1,
     "name": "Hello World",
     "has_img": true,
-    "img": "https://demo.stack.jimmycai.com/p/hello-world/cover_hu3425483315149503896.jpg",
+    "img": "@/posts/hello-world/hello-world.jpg",
     "tags": [
       { "name": "心得" }
     ],
