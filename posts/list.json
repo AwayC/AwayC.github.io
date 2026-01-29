@@ -1,5 +1,18 @@
 [
     {
+    "id": 11,
+    "name": "MySQL on MacOS",
+    "has_img": false,
+    "summary": "MySQL 配置及 C++ API",
+    "tags": [
+      {"name" : "C/C++"}, 
+      {"name" : "后端"},
+      {"name" : "SQL数据库"}
+    ],
+    "pagePath": "mysql/post",
+    "time": "Jan 29, 2026"
+  },  
+  {
     "id": 10,
     "name": "Uno Server",
     "has_img": true,
